@@ -1,0 +1,46 @@
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <span class="h2 d-flex justify-content-center"> Lista de clientes </span>
+      <button
+        type="button"
+        class="btn btn-success btn-lg"
+        routerLink="/create-clientes"
+      >
+        Agregar
+      </button>
+      <h4 class="text-end" *ngIf="clientes.length == 0">Tabla vacía</h4>
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Fecha de nacimiento</th>
+            <th>Estado Civil</th>
+            <th>Estado</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of clientes">
+            <th>{{ c.codigo }}</th>
+            <td>{{ c.nombre }}</td>
+            <td>{{ c.fechaNacimiento }}</td>
+            <td>{{ c.estadoCivil }}</td>
+            <td>{{ c.vigencia }}</td>
+            <td>
+              <i
+                [routerLink]="['/update-clientes/', c.id]"
+                class="fas fa-user-edit fa-lg text-info me-4"
+              ></i>
+              <i
+                (click)="deleteCliente(c.id)"
+                class="fas fa-user-minus fa-lg text-danger"
+              ></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

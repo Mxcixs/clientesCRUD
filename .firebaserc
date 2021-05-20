@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "crudclientes-c68c7": {
+      "hosting": {
+        "clientesCRUD": [
+          "crudclientes-c68c7"
+        ]
+      }
+    }
+  }
+}
