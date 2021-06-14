@@ -1,16 +1,18 @@
-<div class="container mt-3">
+<div class="container mt-3 bg-success">
   <div class="card">
     <div class="card-body">
-      <span class="h2 d-flex justify-content-center"> Lista de clientes </span>
+      <span class="h2 d-flex justify-content-center">
+        Listado de clientes
+      </span>
       <button
         type="button"
-        class="btn btn-success btn-lg"
+        class="btn btn-outline-warning btn-lg"
         routerLink="/create-clientes"
       >
         Agregar
       </button>
-      <h4 class="text-end" *ngIf="clientes.length == 0">Tabla vacía</h4>
-      <table class="table mt-3">
+      <h4 class="text-center" *ngIf="clientes.length == 0">Tabla vacía</h4>
+      <table class="table table-striped mt-3">
         <thead>
           <tr>
             <th>Codigo</th>

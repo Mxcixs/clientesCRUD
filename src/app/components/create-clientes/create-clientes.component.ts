@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
@@ -12,12 +13,14 @@ export class CreateClientesComponent implements OnInit {
   createCliente: FormGroup;
   submitted = false;
   id: string | null;
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
     private _clientService: ClientesService,
     private router: Router,
-    private aRoute: ActivatedRoute
+    private aRoute: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     this.createCliente = this.fb.group({
       codigo: ['', Validators.required],
@@ -54,14 +57,23 @@ export class CreateClientesComponent implements OnInit {
       estadoCivil: this.createCliente.value.estadoCivil,
       vigencia: this.createCliente.value.vigencia,
     };
+    this.loading = true;
     this._clientService
       .agregarCliente(cliente)
       .then(() => {
-        console.log('Cliente agregado');
+        this.toastr.success(
+          '¡Cliente agregado con éxito!',
+          'Cliente Registrado',
+          {
+            positionClass: 'toast-bottom-right',
+          }
+        );
+        this.loading = false;
         this.router.navigate(['/list-clientes']);
       })
       .catch((error) => {
         console.log(error);
+        this.loading = false;
       });
   }
 
